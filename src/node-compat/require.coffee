@@ -1,2 +1,1 @@
-# Simple, huh?
-@require = (module) -> @[module]
+@require = (module) -> this[module.replace(/^.*\//, '')]

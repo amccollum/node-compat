@@ -2,6 +2,8 @@ fs = require('fs')
 sys = require('sys')
 {spawn, exec} = require('child_process')
 
+package = JSON.parse(fs.readFileSync('package.json', 'utf8'))
+
 execCmds = (cmds) ->
     exec cmds.join(' && '), (err, stdout, stderr) ->
         output = (stdout + stderr).trim()
@@ -24,13 +26,14 @@ task 'build', 'Run all build tasks', ->
 
 task 'build-release', 'Create a combined package of all sources', ->
     sources = [
-        './src/node-compat/assert.coffee',
-        './src/node-compat/events.coffee',
-        './src/node-compat/require.coffee',
-        './src/node-compat/streams.coffee',
-        './src/node-compat/process.coffee',
+        'src/node-compat/assert.coffee',
+        'src/node-compat/events.coffee',
+        'src/node-compat/require.coffee',
+        'src/node-compat/streams.coffee',
+        'src/node-compat/process.coffee',
     ].join(' ')
     
     execCmds [
-        "coffee --compile --join ./lib/node-compat-0.0.1.js #{sources}",
+        "coffee --compile --join lib/node-compat-#{package.version}.js #{sources}",
+        "echo \"module.exports = require('lib/node-compat-#{package.version}');\" > index.js",
     ]

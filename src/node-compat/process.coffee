@@ -26,14 +26,17 @@ _nextTickCallback = () ->
         for callback, i in _nextTickQueue
             callback()
             
+        _nextTickQueue.splice(0, i)
+        if _nextTickQueue.length
+            setTimeout(_nextTickCallback, 1)
+
     catch e
         _nextTickQueue.splice(0, i+1)
         if _nextTickQueue.length
             setTimeout(_nextTickCallback, 1)
             
         throw e
-    
-    _nextTickQueue.splice(0, i)
+        
             
 process.nextTick = (callback) ->
     _nextTickQueue.push(callback)
