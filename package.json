@@ -17,5 +17,5 @@
     
     "devDependencies": {
         "coffee-script": "*"
-    },
+    }
 }
