@@ -1,6 +1,6 @@
 # A basic implementation of the node.js EventEmitter class
 
-events = exports ? (@events = {})
+events = if provide? then provide('events', {}) else (@events = {})
 
 isArray = Array.isArray ? ((obj) -> Object.prototype.toString.call(obj) == '[object Array]')
 

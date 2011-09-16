@@ -34,5 +34,5 @@ task 'build-release', 'Create a combined package of all sources', ->
     ].join(' ')
     
     execCmds [
-        "coffee --compile --join lib/node-compat.js #{sources}",
+        "coffee --compile --bare --join lib/node-compat.js #{sources}",
     ]

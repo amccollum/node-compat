@@ -22,7 +22,7 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-assert = exports ? (@assert = {})
+assert = if provide? then provide('assert', {}) else (@assert = {})
 
 # 1. The assert module provides functions that throw
 # AssertionError's when particular conditions are not met. The

@@ -1,5 +1,5 @@
 events = require('events')
-streams = exports ? (@streams = {})
+streams = if provide? then provide('streams', {}) else (@streams = {})
 
 class streams.ReadableStream extends events.EventEmitter
     readable: false

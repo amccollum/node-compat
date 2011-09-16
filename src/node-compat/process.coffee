@@ -1,5 +1,5 @@
 streams = require('streams')
-process = exports ? (@process = {})
+process = if provide? then provide('process', {}) else (@process = {})
 
 class process.stdout extends streams.WriteableStream
     writeable: true
