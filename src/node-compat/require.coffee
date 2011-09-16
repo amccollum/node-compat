@@ -1,1 +1,3 @@
-@require = (module) -> this[module.replace(/^.*\//, '')]
+modules = {}
+@provide ?= (name, module) -> modules[name] = module
+@require ?= (name) -> modules[name] ? @[name]
